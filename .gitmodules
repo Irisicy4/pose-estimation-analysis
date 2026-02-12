@@ -1,0 +1,3 @@
+[submodule "coco-analyze"]
+	path = coco-analyze
+	url = https://github.com/matteorr/coco-analyze.git
