@@ -333,6 +333,8 @@ def main():
             meta["model_a"], meta["model_b"] = meta.get("model_b"), meta.get("model_a")
             meta["model_a_id"], meta["model_b_id"] = meta.get("model_b_id"), meta.get("model_a_id")
             meta["better_model"], meta["worse_model"] = meta.get("worse_model"), meta.get("better_model")
+            meta["error_type_a"], meta["error_type_b"] = meta.get("error_type_b"), meta.get("error_type_a")
+            meta["error_type_per_person_a"], meta["error_type_per_person_b"] = meta.get("error_type_per_person_b"), meta.get("error_type_per_person_a")
 
         original_path = get_original_path(entry)
         stem = meta.get("image_name", f"{sample_id}.jpg").replace(".jpg", "")
@@ -340,16 +342,13 @@ def main():
         model_b_id = meta.get("model_b_id", "")
         file_stem = f"{stem}_{model_a_id}_vs_{model_b_id}"
 
-        # Keypoints for "current" A and B (after swap): choice A = first option, B = second
+        # Keypoints for "current" A and B (after swap): model_a_id/model_b_id already reflect permuted A/B
         persons_for_a = load_keypoints(model_a_id, dataset, sample_id) if original_path else None
         persons_for_b = load_keypoints(model_b_id, dataset, sample_id) if original_path else None
         if not persons_for_a:
             persons_for_a = []
         if not persons_for_b:
             persons_for_b = []
-        # After swap, displayed A is old B and displayed B is old A
-        if swap:
-            persons_for_a, persons_for_b = persons_for_b, persons_for_a
 
         # 4) Duplicate 4 times: encodings a, b, c, d
         for enc_name, enc_key in [("same_color", "a"), ("per_person_color", "b"), ("per_body_part", "c"), ("json_text", "d")]:
