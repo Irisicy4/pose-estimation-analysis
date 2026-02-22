@@ -203,6 +203,12 @@ def load_predictions(model_name, dataset_name, image_stem):
     for person in data.get("keypoints", []):
         kp = person.get("keypoints", [])
         bbox = person.get("bbox")
+        # Handle nested [[x,y,v]*17] format (e.g. yolo8n) in addition to flat [x,y,v]*17
+        if isinstance(kp, list) and len(kp) > 0 and isinstance(kp[0], list):
+            flat = []
+            for pt in kp:
+                flat.extend(pt)
+            kp = flat
         if len(kp) < 51:
             continue
         kpts = np.array(kp[:51], dtype=float).reshape(17, 3)
@@ -345,6 +351,24 @@ def choice_level_error_type(per_person_types, n_pred, n_gt):
     return _majority_error_type(per_person_types)
 
 
+def compute_instance_recall(n_pred, n_gt):
+    """Fraction of GT instances detected. 1.0 when n_pred >= n_gt, <1.0 when missing."""
+    if n_gt <= 0:
+        return 1.0
+    return min(n_pred, n_gt) / n_gt
+
+
+def compute_adjusted_score(oks, n_pred, n_gt):
+    """OKS penalized by instance recall: adjusted = OKS * min(n_pred/n_gt, 1.0).
+
+    This addresses the limitation where OKS only measures quality of detected
+    keypoints but does not penalize missing instances.  A model that detects
+    3/10 persons accurately gets adjusted = OKS * 0.3 instead of raw OKS.
+    """
+    recall = compute_instance_recall(n_pred, n_gt)
+    return oks * recall
+
+
 def process_entry(entry, gt_cache):
     meta = entry.get("metadata", {})
     dataset = meta.get("dataset", "")
@@ -404,6 +428,21 @@ def process_entry(entry, gt_cache):
     meta["error_type_b"] = error_type_b
     meta["error_type_per_person_a"] = per_person_a
     meta["error_type_per_person_b"] = per_person_b
+
+    # Instance-aware metrics
+    meta["n_pred_a"] = n_pred_a
+    meta["n_pred_b"] = n_pred_b
+    meta["n_gt"] = n_gt
+    meta["instance_recall_a"] = compute_instance_recall(n_pred_a, n_gt)
+    meta["instance_recall_b"] = compute_instance_recall(n_pred_b, n_gt)
+
+    score_a = meta.get("score_a")
+    score_b = meta.get("score_b")
+    if score_a is not None:
+        meta["adjusted_score_a"] = round(compute_adjusted_score(score_a, n_pred_a, n_gt), 6)
+    if score_b is not None:
+        meta["adjusted_score_b"] = round(compute_adjusted_score(score_b, n_pred_b, n_gt), 6)
+
     return entry
 
 

@@ -1,0 +1,47 @@
+Total entries: 1828
+Total base pairs: 457
+Entries with issues: 16 / 1828
+Base pairs with issues: 4 / 457
+
+Failures by check category:
+  answer_score_consistency                 0  (0.0%)
+  basic_fields                             0  (0.0%)
+  cross_encoding                           0  (0.0%)
+  encoding_format                          0  (0.0%)
+  error_type_heuristics                   16  (0.9%)
+  instance_type                            0  (0.0%)
+  media_path_format                        0  (0.0%)
+
+======================================================================
+BASE PAIRS BY STATUS:
+
+OK base pairs: 453
+Flagged base pairs: 4
+
+======================================================================
+FLAGGED BASE PAIR DETAILS:
+
+--- 000000012748|cocowb300|yolo8m|yolo8l ---
+  [a] error_type_heuristics: both sides swap with score_diff=0.0278 (< 0.05, visually indistinguishable for MLLM)
+  [b] error_type_heuristics: both sides swap with score_diff=0.0278 (< 0.05, visually indistinguishable for MLLM)
+  [c] error_type_heuristics: both sides swap with score_diff=0.0278 (< 0.05, visually indistinguishable for MLLM)
+  [d] error_type_heuristics: both sides swap with score_diff=0.0278 (< 0.05, visually indistinguishable for MLLM)
+
+--- 000000034139|coco300|yolo8l|yolo8m ---
+  [a] error_type_heuristics: both sides swap with score_diff=0.0160 (< 0.05, visually indistinguishable for MLLM)
+  [b] error_type_heuristics: both sides swap with score_diff=0.0160 (< 0.05, visually indistinguishable for MLLM)
+  [c] error_type_heuristics: both sides swap with score_diff=0.0160 (< 0.05, visually indistinguishable for MLLM)
+  [d] error_type_heuristics: both sides swap with score_diff=0.0160 (< 0.05, visually indistinguishable for MLLM)
+
+--- 000000146358|cocowb300|yolo11n|yolo8s ---
+  [a] error_type_heuristics: both sides swap with score_diff=0.0119 (< 0.05, visually indistinguishable for MLLM)
+  [b] error_type_heuristics: both sides swap with score_diff=0.0119 (< 0.05, visually indistinguishable for MLLM)
+  [c] error_type_heuristics: both sides swap with score_diff=0.0119 (< 0.05, visually indistinguishable for MLLM)
+  [d] error_type_heuristics: both sides swap with score_diff=0.0119 (< 0.05, visually indistinguishable for MLLM)
+
+--- 000000146358|cocowb300|yolo8l|yolo11n ---
+  [a] error_type_heuristics: both sides swap with score_diff=0.0153 (< 0.05, visually indistinguishable for MLLM)
+  [b] error_type_heuristics: both sides swap with score_diff=0.0153 (< 0.05, visually indistinguishable for MLLM)
+  [c] error_type_heuristics: both sides swap with score_diff=0.0153 (< 0.05, visually indistinguishable for MLLM)
+  [d] error_type_heuristics: both sides swap with score_diff=0.0153 (< 0.05, visually indistinguishable for MLLM)
+

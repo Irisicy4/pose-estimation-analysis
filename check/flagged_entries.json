@@ -1,0 +1,274 @@
+[
+  {
+    "id": "400",
+    "base_pair_key": "000000146358|cocowb300|yolo11n|yolo8s",
+    "encoding": "a",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0119 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "401",
+    "base_pair_key": "000000146358|cocowb300|yolo11n|yolo8s",
+    "encoding": "b",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0119 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "402",
+    "base_pair_key": "000000146358|cocowb300|yolo11n|yolo8s",
+    "encoding": "c",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0119 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "403",
+    "base_pair_key": "000000146358|cocowb300|yolo11n|yolo8s",
+    "encoding": "d",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0119 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "440",
+    "base_pair_key": "000000146358|cocowb300|yolo8l|yolo11n",
+    "encoding": "a",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0153 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "441",
+    "base_pair_key": "000000146358|cocowb300|yolo8l|yolo11n",
+    "encoding": "b",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0153 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "442",
+    "base_pair_key": "000000146358|cocowb300|yolo8l|yolo11n",
+    "encoding": "c",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0153 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "443",
+    "base_pair_key": "000000146358|cocowb300|yolo8l|yolo11n",
+    "encoding": "d",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0153 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "456",
+    "base_pair_key": "000000012748|cocowb300|yolo8m|yolo8l",
+    "encoding": "a",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0278 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "457",
+    "base_pair_key": "000000012748|cocowb300|yolo8m|yolo8l",
+    "encoding": "b",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0278 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "458",
+    "base_pair_key": "000000012748|cocowb300|yolo8m|yolo8l",
+    "encoding": "c",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0278 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "459",
+    "base_pair_key": "000000012748|cocowb300|yolo8m|yolo8l",
+    "encoding": "d",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0278 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "476",
+    "base_pair_key": "000000034139|coco300|yolo8l|yolo8m",
+    "encoding": "a",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0160 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "477",
+    "base_pair_key": "000000034139|coco300|yolo8l|yolo8m",
+    "encoding": "b",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0160 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "478",
+    "base_pair_key": "000000034139|coco300|yolo8l|yolo8m",
+    "encoding": "c",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0160 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  },
+  {
+    "id": "479",
+    "base_pair_key": "000000034139|coco300|yolo8l|yolo8m",
+    "encoding": "d",
+    "checks": {
+      "basic_fields": "pass",
+      "answer_score_consistency": "pass",
+      "encoding_format": "pass",
+      "media_path_format": "pass",
+      "error_type_heuristics": [
+        "both sides swap with score_diff=0.0160 (< 0.05, visually indistinguishable for MLLM)"
+      ],
+      "instance_type": "pass",
+      "cross_encoding": "pass"
+    },
+    "status": "fail"
+  }
+]
