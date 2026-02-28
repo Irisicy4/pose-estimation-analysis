@@ -177,10 +177,31 @@ def load_gt_annotations(dataset_name):
     return {"filename_to_id": filename_to_id, "id_to_anns": id_to_anns}
 
 
-def get_all_gt_for_image(gt_data, image_name):
+def get_img_id(gt_data, image_name, sample_id):
+    """Resolve COCO image id for this image. Tries image_name, sample_id + '.jpg', sample_id."""
+    if not gt_data:
+        return None
+    fid = gt_data.get("filename_to_id") or {}
+    return fid.get(image_name) or fid.get(sample_id + ".jpg") or fid.get(sample_id)
+
+
+def get_gt_instance_count(gt_data, image_name, sample_id):
+    """Count ALL person annotations for this image (no keypoint filter). Use for n_gt."""
+    if gt_data is None:
+        return 0
+    img_id = get_img_id(gt_data, image_name, sample_id)
+    if img_id is None:
+        return 0
+    return len(gt_data["id_to_anns"].get(img_id, []))
+
+
+def get_all_gt_for_image(gt_data, image_name, sample_id=None):
+    """Return list of GT instances with valid keypoints (51 values, num_keypoints > 0)."""
     if gt_data is None:
         return []
-    img_id = gt_data["filename_to_id"].get(image_name)
+    if sample_id is None:
+        sample_id = Path(image_name).stem if image_name else ""
+    img_id = get_img_id(gt_data, image_name, sample_id)
     if img_id is None:
         return []
     all_gts = []
@@ -214,14 +235,6 @@ def load_predictions(model_name, dataset_name, image_stem):
         kpts = np.array(kp[:51], dtype=float).reshape(17, 3)
         out.append({"keypoints": kpts, "bbox": bbox})
     return out
-
-
-def get_img_id(gt_data, image_name, sample_id):
-    """Resolve COCO image id for this image. Tries image_name and sample_id + '.jpg'."""
-    if not gt_data:
-        return None
-    fid = gt_data.get("filename_to_id") or {}
-    return fid.get(image_name) or fid.get(sample_id + ".jpg") or fid.get(sample_id)
 
 
 def _kp_17x3_to_coco_flat(kpts):
@@ -343,11 +356,24 @@ def _majority_error_type(per_person_types):
     return ""
 
 
+# Less/over instance judgement PRECEDES other error types: only when instance count
+# is within ±30% of GT do we use per-person types (good, jitter, miss, etc).
+INSTANCE_RATIO_LOW = 0.7   # n_pred < n_gt * this -> less instance
+INSTANCE_RATIO_HIGH = 1.3  # n_pred > n_gt * this -> over instance
+
+
 def choice_level_error_type(per_person_types, n_pred, n_gt):
-    if n_pred > n_gt:
-        return "over instance"
-    if n_pred < n_gt:
-        return "less instance"
+    """Less/over instance first; only when count within ±30% of GT use other types."""
+    n_gt = n_gt or 0
+    # 1. Check instance count first: outside ±30% -> less/over instance
+    if n_gt > 0:
+        if n_pred > n_gt * INSTANCE_RATIO_HIGH:
+            return "over instance"
+        if n_pred < n_gt * INSTANCE_RATIO_LOW:
+            return "less instance"
+    elif n_pred > 0:
+        return "over instance"  # GT has no persons, model predicted some
+    # 2. Within ±30% (or n_gt==n_pred==0): use per-person error types
     return _majority_error_type(per_person_types)
 
 
@@ -380,8 +406,8 @@ def process_entry(entry, gt_cache):
     if dataset not in gt_cache:
         gt_cache[dataset] = load_gt_annotations(dataset)
     gt_data = gt_cache[dataset]
-    all_gts = get_all_gt_for_image(gt_data, image_name) if gt_data else []
-    n_gt = len(all_gts)
+    all_gts = get_all_gt_for_image(gt_data, image_name, sample_id) if gt_data else []
+    n_gt = get_gt_instance_count(gt_data, image_name, sample_id) if gt_data else len(all_gts)
 
     preds_a = load_predictions(model_a_id, dataset, sample_id)
     preds_b = load_predictions(model_b_id, dataset, sample_id)
